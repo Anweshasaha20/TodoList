@@ -11,14 +11,18 @@ const InputTodo = (props) => {
     e.preventDefault();
     try {
       const body = { description }; // shorthand for ->const body = { description: description };
-      const response = await axios.post(
-        "http://localhost:1234/api/v1/todos",
-        body
-      );
-      // Add the new todo to the list and clear input
-      props.addTodoToList(response.data); // Call parent function to update the list
-      setDescription(""); // Clear the input field
-      console.log("Response:", response.data);
+      if (description != "") {
+        const response = await axios.post(
+          "http://localhost:1234/api/v1/todos",
+          body
+        );
+        // Add the new todo to the list and clear input
+        props.addTodoToList(response.data); // Call parent function to update the list
+        setDescription(""); // Clear the input field
+        console.log("Response:", response.data);
+      } else {
+        alert("Enter a valid todo");
+      }
     } catch (e) {
       console.error(e.message);
     }
