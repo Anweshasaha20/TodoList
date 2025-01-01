@@ -48,7 +48,8 @@ todoRouter.post("/todos", async (req, res) => {
     // Return the description in the response
     res.status(201).json({
       message: "Todo created successfully",
-      description: req.body.description,
+      description: userdata.description,
+      todoid: userdata.todoid,
     });
   } catch (e) {
     console.error(e.message); // Log the error message
