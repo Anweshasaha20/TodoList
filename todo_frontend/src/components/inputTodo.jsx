@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 
-const InputTodo = () => {
+const InputTodo = (props) => {
   const [description, setDescription] = useState("");
 
   const onSubmit = async (e) => {
@@ -15,6 +15,9 @@ const InputTodo = () => {
         "http://localhost:1234/api/v1/todos",
         body
       );
+      // Add the new todo to the list and clear input
+      props.addTodoToList(response.data); // Call parent function to update the list
+      setDescription(""); // Clear the input field
       console.log("Response:", response.data);
     } catch (e) {
       console.error(e.message);

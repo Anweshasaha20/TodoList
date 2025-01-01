@@ -40,7 +40,7 @@ todoRouter.post("/todos", async (req, res) => {
 
     // Save the data to the database
     const userdata = await prisma.todo.create({
-      data: { description: JSON.stringify(req.body.description) },
+      data: { description: req.body.description },
     });
 
     console.log(userdata);
